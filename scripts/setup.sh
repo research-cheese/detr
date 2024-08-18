@@ -15,6 +15,7 @@ cd ..
 pip install torchvision
 pip install pycocotools
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install scipy
 
 python3 src/download_checkpoint.py
 
