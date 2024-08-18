@@ -1,0 +1,1 @@
+{"version": "0.1.0", "flags": {}, "imagePath": "../images/val2017_1024.png", "imageData": null, "imageHeight": 144, "imageWidth": 256, "shapes": [{"label": "vehicle", "points": [[239, 34], [256, 59]], "group_id": null, "shape_type": "rectangle", "flags": {}}]}

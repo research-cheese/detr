@@ -1,0 +1,5 @@
+detr
+venv
+detr-r50_no-class-head.pth
+outputs
+predictions
