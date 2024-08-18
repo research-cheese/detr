@@ -1,1 +1,0 @@
-{"version": "0.1.0", "flags": {}, "imagePath": "../images/val2017_1762.png", "imageData": null, "imageHeight": 144, "imageWidth": 256, "shapes": [{"label": "pedestrian", "points": [[0, 109], [22, 119]], "group_id": null, "shape_type": "rectangle", "flags": {}}, {"label": "nature", "points": [[189, 111], [217, 144]], "group_id": null, "shape_type": "rectangle", "flags": {}}]}

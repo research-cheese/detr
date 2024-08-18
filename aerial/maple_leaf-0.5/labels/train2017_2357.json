@@ -1,1 +1,0 @@
-{"version": "0.1.0", "flags": {}, "imagePath": "../images/train2017_2357.png", "imageData": null, "imageHeight": 144, "imageWidth": 256, "shapes": [{"label": "nature", "points": [[173, 0], [245, 28]], "group_id": null, "shape_type": "rectangle", "flags": {}}, {"label": "nature", "points": [[43, 25], [134, 115]], "group_id": null, "shape_type": "rectangle", "flags": {}}]}

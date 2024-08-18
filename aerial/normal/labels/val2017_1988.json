@@ -1,1 +1,0 @@
-{"version": "0.1.0", "flags": {}, "imagePath": "../images/val2017_1988.png", "imageData": null, "imageHeight": 144, "imageWidth": 256, "shapes": [{"label": "nature", "points": [[0, 12], [74, 144]], "group_id": null, "shape_type": "rectangle", "flags": {}}, {"label": "nature", "points": [[11, 29], [31, 37]], "group_id": null, "shape_type": "rectangle", "flags": {}}]}
