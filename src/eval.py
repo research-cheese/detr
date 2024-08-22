@@ -85,7 +85,7 @@ def evaluate_model(name):
     # Load
     model = load_model(name)
 
-    test_images_folder = "aerial/test"
+    test_images_folder = "aerial/test/val2017"
     output_folder = f"predictions/{name}"
 
     if os.path.exists(output_folder):
