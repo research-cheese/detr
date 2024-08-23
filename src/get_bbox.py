@@ -29,7 +29,9 @@ def extract_bbox(input_path, output_path, threshold):
 
         with open(output_path, 'a') as f:
             f.write(json.dumps({
-                "class": category_name,
+                "category": category_name,
+                "category_id": label_id,
+                "confidence": max(proba),
                 "xmin": xmin,
                 "ymin": ymin,
                 "xmax": xmax,
@@ -59,7 +61,8 @@ def extract_ground_truth_bbox(annotation_path, output_path, image_name):
             category = ID_2_LABEL[a['category_id']]
 
             bboxes.append({
-                "class": category,
+                "category": category,
+                "category_id": a['category_id'],
                 "xmin": xmin,
                 "ymin": ymin,
                 "xmax": xmax,
@@ -75,7 +78,7 @@ def extract_ground_truth_bbox(annotation_path, output_path, image_name):
 
 def mariofy(name, threshold):
     output_path = f"mario/{threshold}/{name}"
-    input_image_folder_path = f"aerial/test"
+    input_image_folder_path = f"aerial/test/val2017"
 
     rm_makedir(output_path)
 
@@ -92,12 +95,12 @@ def mariofy(name, threshold):
         shutil.copy(input_image_path, f"{output_sample_path}/image.png")
 
         output_bbox_path = f"{output_sample_path}/ground_truth.jsonl"
-        extract_ground_truth_bbox(f"aerial/{name}/annotations/custom_val.json", output_bbox_path, image)
+        extract_ground_truth_bbox(f"aerial/test/annotations/custom_val.json", output_bbox_path, image)
 
 
 for threshold in [0.2, 0.4, 0.6, 0.8]:
-    mariofy("dust-0.25", threshold)
-    mariofy("fog-0.25", threshold)
+    mariofy("dust-0.5", threshold)
+    mariofy("fog-0.5", threshold)
     mariofy("normal", threshold)
     mariofy("maple_leaf-0.5", threshold)
     mariofy("snow-0.5", threshold)
