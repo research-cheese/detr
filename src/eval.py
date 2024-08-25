@@ -100,9 +100,10 @@ def evaluate_model(name):
         with open(f"{output_folder}/{image}.json", 'w') as f:
             json.dump(ret, f)
 
-evaluate_model("dust-0.5")
-evaluate_model("fog-0.5")
-evaluate_model("normal")
-evaluate_model("rain-0.5")
-evaluate_model("snow-0.5")
-evaluate_model("maple_leaf-0.5")
+evaluate_model("train")
+# evaluate_model("dust-0.5")
+# evaluate_model("fog-0.5")
+# evaluate_model("normal")
+# evaluate_model("rain-0.5")
+# evaluate_model("snow-0.5")
+# evaluate_model("maple_leaf-0.5")

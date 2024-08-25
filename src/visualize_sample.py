@@ -48,5 +48,5 @@ def visualize_sample(sample, ax=None):
         plt.show()
 
 # visualize_sample("mario/0.8/normal/val2017_1002.png")
-visualize_sample("mario/0.8/normal/val2017_1001.png")
+visualize_sample("mario/0.8/maple_leaf-0.5/val2017_1069.png")
 # visualize_sample("mario/0.8/snow-0.5/val2017_1109.png")
