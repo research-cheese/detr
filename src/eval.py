@@ -79,20 +79,21 @@ def run_worflow(my_image, my_model):
     }
   return ret
 
-def evaluate_model(name):
+def evaluate_model(name, test_images_folder, output_folder_path):
     print(f"Processing {name}")
 
     # Load
     model = load_model(name)
 
     test_images_folder = "aerial/test/val2017"
-    output_folder = f"predictions/{name}"
+    output_folder = f"{output_folder_path}/{name}"
 
     if os.path.exists(output_folder):
         shutil.rmtree(output_folder)
     os.makedirs(output_folder)
 
     for image in os.listdir(test_images_folder):
+        print("Processing", image)
         im = Image.open(f"{test_images_folder}/{image}")
         im = im.convert('RGB')
         ret = run_worflow(im, model)
@@ -100,10 +101,27 @@ def evaluate_model(name):
         with open(f"{output_folder}/{image}.json", 'w') as f:
             json.dump(ret, f)
 
-evaluate_model("train")
-# evaluate_model("dust-0.5")
-# evaluate_model("fog-0.5")
-# evaluate_model("normal")
-# evaluate_model("rain-0.5")
-# evaluate_model("snow-0.5")
-# evaluate_model("maple_leaf-0.5")
+def evaluate_models(test_images_folder, output_folder):
+    evaluate_model("train", test_images_folder, output_folder)
+    evaluate_model("dust-10", test_images_folder, output_folder)
+    evaluate_model("dust-100", test_images_folder, output_folder)
+    evaluate_model("dust-1000", test_images_folder, output_folder)
+
+    evaluate_model("fog-10", test_images_folder, output_folder)
+    evaluate_model("fog-100", test_images_folder, output_folder)
+    evaluate_model("fog-1000", test_images_folder, output_folder)
+
+    evaluate_model("rain-10", test_images_folder, output_folder)
+    evaluate_model("rain-100", test_images_folder, output_folder)
+    evaluate_model("rain-1000", test_images_folder, output_folder)
+
+    evaluate_model("snow-10", test_images_folder, output_folder)
+    evaluate_model("snow-100", test_images_folder, output_folder)
+    evaluate_model("snow-1000", test_images_folder, output_folder)
+
+    evaluate_model("maple_leaf-10", test_images_folder, output_folder)
+    evaluate_model("maple_leaf-100", test_images_folder, output_folder)
+    evaluate_model("maple_leaf-1000", test_images_folder, output_folder)
+
+evaluate_models("aerial/test/train2017", f"test_predictions")
+evaluate_models("aerial/val/train2017", f"val_predictions")

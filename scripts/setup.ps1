@@ -16,6 +16,13 @@ pip install torchvision
 pip install pycocotools
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install scipy
+pip install transformers
+pip install datasets
+pip install accelerate
+pip install torchmetrics
+pip install albumentations
+pip install dataclasses
+pip install peft
 
 python src/download_checkpoint.py
 

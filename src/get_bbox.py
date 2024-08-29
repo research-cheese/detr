@@ -5,6 +5,7 @@ import shutil
 from config.params import ID_2_LABEL
 
 from utils.rm_makedir import rm_makedir
+from PIL import Image, ImageChops
 
 def extract_bbox(input_path, output_path, threshold):
     if os.path.exists(output_path): shutil.rmtree(output_path)
@@ -79,6 +80,13 @@ def extract_ground_truth_bbox(annotation_path, output_path, image_name):
 def mariofy(name, threshold):
     output_path = f"mario/{threshold}/{name}"
     input_image_folder_path = f"aerial/test/val2017"
+    metadata_folder_path = f"aerial/test/val2017"
+
+    metadata_dict = {}
+    for line in open(f"cityenviron/aerial/test/metadata.jsonl", 'r'):
+        metadata = eval(line)
+        metadata_dict[metadata["sample_index"]] = metadata
+
 
     rm_makedir(output_path)
 
@@ -97,8 +105,22 @@ def mariofy(name, threshold):
         output_bbox_path = f"{output_sample_path}/ground_truth.jsonl"
         extract_ground_truth_bbox(f"aerial/test/annotations/custom_val.json", output_bbox_path, image)
 
+        output_metadata_path = f"{output_sample_path}/metadata.jsonl"
+        input_image = Image.open(input_image_path).convert('RGB')
+        for index in metadata_dict.keys():
+            metadata_image = Image.open(f"cityenviron/aerial/test/images/{index}/Scene.png").convert("RGB")
+            if ImageChops.difference(input_image, metadata_image).getbbox():
+                metadata = metadata_dict[index]
+                with open(output_metadata_path, 'w') as f:
+                    f.write(json.dumps(metadata))
+                break
+        if os.path.exists(output_metadata_path) == False:
+            print("Metadata not found for", image)
+
+
 
 for threshold in [0.2, 0.4, 0.6, 0.8]:
+    mariofy("train", threshold)
     mariofy("dust-0.5", threshold)
     mariofy("fog-0.5", threshold)
     mariofy("normal", threshold)
