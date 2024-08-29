@@ -1,4 +1,5 @@
 source venv/bin/activate
+mkdir -p outputs/full
 
 python3 ./detr/main.py --dataset_file "custom" --coco_path "./aerial/train-10000" --output_dir "outputs/full/train" --resume "detr-r50_no-class-head.pth"  --num_classes 4 --epochs 100
 
