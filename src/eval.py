@@ -80,8 +80,6 @@ def run_worflow(my_image, my_model):
   return ret
 
 def evaluate_model(name, test_images_folder, output_folder_path):
-    print(f"Processing {name}")
-
     # Load
     model = load_model(name)
 
@@ -92,7 +90,6 @@ def evaluate_model(name, test_images_folder, output_folder_path):
     os.makedirs(output_folder)
 
     for image in os.listdir(test_images_folder):
-        print("Processing", image)
         im = Image.open(f"{test_images_folder}/{image}")
         im = im.convert('RGB')
         ret = run_worflow(im, model)
