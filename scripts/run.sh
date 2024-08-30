@@ -24,3 +24,4 @@ python3 ./detr/main.py --dataset_file "custom" --coco_path "./aerial/snow-100/tr
 python3 ./detr/main.py --dataset_file "custom" --coco_path "./aerial/snow-1000/train" --output_dir "outputs/full/snow-1000" --resume "outputs/full/train-10000/checkpoint.pth"  --num_classes 4 --epochs 200
 
 python3 src/eval.py
+python3 src/train_peft_model.py

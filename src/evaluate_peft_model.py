@@ -205,7 +205,8 @@ def evaluate_model(config, name, checkpoint, prefix, test_images_folder, output_
     os.makedirs(output_folder)
 
     for image in os.listdir(test_images_folder):
-        print(model(image))
+        results = model(image)
+        print(results)            
 
 ia3_config = IA3Config(
     target_modules=["k_proj", "v_proj", "q_proj", "out_proj", "fc1", "fc2"],
