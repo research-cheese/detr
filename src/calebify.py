@@ -46,35 +46,19 @@ def donkify(name):
     calebify(name, "train")
     calebify(name, "val")
 
-try: donkify("train-10000")
-except: pass
-try: donkify("dust-10")
-except: pass
-try: donkify("dust-100")
-except: pass
-try: donkify("dust-1000")
-except: pass
-try: donkify("fog-10")
-except: pass
-try: donkify("fog-100")
-except: pass
-try: donkify("fog-1000")
-except: pass
-try: donkify("rain-10")
-except: pass
-try: donkify("rain-100")
-except: pass
-try: donkify("rain-1000")
-except: pass
-try: donkify("snow-10")
-except: pass
-try: donkify("snow-100")
-except: pass
-try: donkify("snow-1000")
-except: pass
-try: donkify("maple_leaf-10")
-except: pass
-try: donkify("maple_leaf-100")
-except: pass
-try: donkify("maple_leaf-1000")
-except: pass
+donkify("train-10000")
+donkify("dust-10")
+donkify("dust-100")
+donkify("dust-1000")
+donkify("fog-10")
+donkify("fog-100")
+donkify("fog-1000")
+donkify("rain-10")
+donkify("rain-100")
+donkify("rain-1000")
+donkify("snow-10")
+donkify("snow-100")
+donkify("snow-1000")
+donkify("maple_leaf-10")
+donkify("maple_leaf-100")
+donkify("maple_leaf-1000")
