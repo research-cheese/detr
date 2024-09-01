@@ -98,7 +98,7 @@ def evaluate_model(name, test_images_folder, output_folder_path):
             json.dump(ret, f)
 
 def evaluate_models(test_images_folder, output_folder):
-    evaluate_model("train", test_images_folder, output_folder)
+    evaluate_model("train-10000", test_images_folder, output_folder)
     evaluate_model("dust-10", test_images_folder, output_folder)
     evaluate_model("dust-100", test_images_folder, output_folder)
     evaluate_model("dust-1000", test_images_folder, output_folder)
