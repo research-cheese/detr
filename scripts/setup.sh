@@ -23,6 +23,7 @@ pip install torchmetrics
 pip install albumentations
 pip install dataclasses
 pip install peft
+pip install timm
 
 python3 src/download_checkpoint.py
 
