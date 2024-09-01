@@ -26,8 +26,8 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
     origin = f"{name}"
     
     data = {
-        "train": f"train/metadata.jsonl",
-        "validation": f"val/metadata.jsonl",
+        "train": f"caleb/{origin}/train/metadata.jsonl",
+        "validation": f"caleb/{origin}/val/metadata.jsonl",
     }
     cs_caronly = load_dataset("json", data_files=data)
 
