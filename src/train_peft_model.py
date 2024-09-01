@@ -163,8 +163,6 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
         metric1.update(post_processed_predictions, post_processed_targets)
         metric1 = metric1.compute()
         metric1.pop("classes", None)
-        print(metric1)
-        input("Wait?")
         metric1 = {k: round(v.item(), 4) for k, v in metric1.items()}
 
         metric2 = CompleteIntersectionOverUnion(box_format="xyxy", class_metrics=False)
