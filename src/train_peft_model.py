@@ -61,7 +61,7 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
         image_ids = examples["image_id"]
         images, bboxes, area, categories = [], [], [], []
         examples["image"] = [
-            Image.open(f"caleb/{origin}/train/{file[:-4]}.jpg") for file in examples["file_name"]
+            Image.open(f"caleb/{origin}/train/{file[:-4]}.png") for file in examples["file_name"]
         ]
         for image, objects in zip(examples["image"], examples["objects"]):
             image = np.array(image.convert("RGB"))[:, :, ::-1]
@@ -86,7 +86,7 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
         image_ids = examples["image_id"]
         images, bboxes, area, categories = [], [], [], []
         examples["image"] = [
-            Image.open(f"caleb/{origin}/val/{file[:-4]}.jpg") for file in examples["file_name"]
+            Image.open(f"caleb/{origin}/val/{file[:-4]}.png") for file in examples["file_name"]
         ]
         for image, objects in zip(examples["image"], examples["objects"]):
             image = np.array(image.convert("RGB"))[:, :, ::-1]
