@@ -95,7 +95,7 @@ def mariofy(name, threshold):
         os.makedirs(output_sample_path)
 
         input_image_path = f"{input_image_folder_path}/{image}"
-        input_json_path = f"scp/predictions/{name}/{image}.json"
+        input_json_path = f"predictions/{name}/{image}.json"
 
         output_prediction_path = f"{output_sample_path}/prediction.jsonl"
         extract_bbox(input_json_path, output_prediction_path, threshold)

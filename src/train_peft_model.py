@@ -203,7 +203,7 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
 
     training_args = TrainingArguments(
         output_dir=f"outputs/{prefix}/{name}/results",
-        push_to_hub=True,
+        push_to_hub=False,
         per_device_train_batch_size=8,
         num_train_epochs=10,
         fp16=True,
