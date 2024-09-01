@@ -4,7 +4,7 @@ import json
 
 def calebify(name, prefix):
     input_annotations_path = f"aerial/{name}/annotations/custom_{prefix}.json"
-    input_images_path = f"aerial/{name}/{prefix}2017"
+    input_images_path = f"aerial/{name}/{prefix}"
 
     output_path = f"caleb/{name}/{prefix}"
     output_annotations_path = f"{output_path}/metadata.jsonl"
