@@ -29,7 +29,7 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
         "train": f"caleb/{origin}/train/metadata.jsonl",
         "validation": f"caleb/{origin}/val/metadata.jsonl",
     }
-    cs_caronly = load_dataset("json", data_files=data)
+    cs_caronly = load_dataset("json", data_dir=f"caleb/{origin}", data_files=data)
 
     image_processor = AutoImageProcessor.from_pretrained(checkpoint)
 
