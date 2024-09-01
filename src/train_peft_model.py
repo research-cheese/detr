@@ -238,7 +238,7 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
     )
 
     trainer.train()
-    trainer.save_model(f"outputs/{prefix}/{name}/model.pth")
+    trainer.save_model(f"outputs/{prefix}/{name}/checkpoints.pth")
 
 ia3_config = IA3Config(
     target_modules=["k_proj", "v_proj", "q_proj", "out_proj", "fc1", "fc2"],
@@ -270,23 +270,23 @@ for config in [
     ("LoRA", lora_config),
     ("LNTuning", lntuning_config),
 ]:
-    train_peft_model(config[1], "train-10000", base_checkpoint="outputs/full/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "dust-10/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "dust-100/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "dust-1000/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
+    train_peft_model(config[1], "train-10000", base_checkpoint="outputs/full/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "dust-10/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "dust-100/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "dust-1000/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
 
-    train_peft_model(config[1], "fog-10/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "fog-100/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "fog-1000/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
+    train_peft_model(config[1], "fog-10/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "fog-100/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "fog-1000/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
     
-    train_peft_model(config[1], "maple_leaf-10/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "maple_leaf-100/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "maple_leaf-1000/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
+    train_peft_model(config[1], "maple_leaf-10/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "maple_leaf-100/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "maple_leaf-1000/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
     
-    train_peft_model(config[1], "rain-10/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "rain-100/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "rain-1000/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
+    train_peft_model(config[1], "rain-10/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "rain-100/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "rain-1000/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
     
-    train_peft_model(config[1], "snow-10/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "snow-100/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
-    train_peft_model(config[1], "snow-1000/train", f"outputs/{config[0]}/train-10000/model.pth", prefix=config[0])
+    train_peft_model(config[1], "snow-10/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "snow-100/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
+    train_peft_model(config[1], "snow-1000/train", f"outputs/{config[0]}/train-10000/checkpoint.pth", prefix=config[0])
