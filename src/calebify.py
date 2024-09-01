@@ -3,8 +3,8 @@ import os
 import json
 
 def calebify(name, prefix):
-    input_annotations_path = f"aerial/{name}/train/annotations/custom_{prefix}.json"
-    input_images_path = f"aerial/{name}/train/{prefix}2017"
+    input_annotations_path = f"aerial/{name}/annotations/custom_{prefix}.json"
+    input_images_path = f"aerial/{name}/{prefix}2017"
 
     output_path = f"caleb/{name}/{prefix}"
     output_annotations_path = f"{output_path}/metadata.jsonl"
@@ -47,18 +47,18 @@ def donkify(name):
     calebify(name, "val")
 
 donkify("train-10000")
-donkify("dust-10")
-donkify("dust-100")
-donkify("dust-1000")
-donkify("fog-10")
-donkify("fog-100")
-donkify("fog-1000")
-donkify("rain-10")
-donkify("rain-100")
-donkify("rain-1000")
-donkify("snow-10")
-donkify("snow-100")
-donkify("snow-1000")
-donkify("maple_leaf-10")
-donkify("maple_leaf-100")
-donkify("maple_leaf-1000")
+donkify("dust-10/train")
+donkify("dust-100/train")
+donkify("dust-1000/train")
+donkify("fog-10/train")
+donkify("fog-100/train")
+donkify("fog-1000/train")
+donkify("rain-10/train")
+donkify("rain-100/train")
+donkify("rain-1000/train")
+donkify("snow-10/train")
+donkify("snow-100/train")
+donkify("snow-1000/train")
+donkify("maple_leaf-10/train")
+donkify("maple_leaf-100/train")
+donkify("maple_leaf-1000/train")
