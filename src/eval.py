@@ -50,7 +50,7 @@ def load_model(name):
                         pretrained=False,
                         num_classes=NUM_CLASSES)
 
-    checkpoint = torch.load(f'outputs/{name}/checkpoint.pth',
+    checkpoint = torch.load(f'outputs/full/{name}/checkpoint.pth',
                             map_location='cpu')
 
     model.load_state_dict(checkpoint['model'],
