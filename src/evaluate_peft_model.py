@@ -22,7 +22,6 @@ from PIL import Image
 from peft import IA3Config, LoraConfig, LNTuningConfig, get_peft_model
 from peft.peft_model import PeftModel
 
-
 def load_image(image_path):
     image = Image.open(image_path)
     image = np.array(image.convert("RGB"))[:, :, ::-1]
@@ -30,18 +29,30 @@ def load_image(image_path):
 
 
 def eval_checkpoint(checkpoint="facebook/detr-resnet-50", dataset_name="val"):
+    image_processor = AutoImageProcessor.from_pretrained(checkpoint)
+
+    transform = albumentations.Compose(
+        [
+            albumentations.Resize(480, 480),
+            albumentations.HorizontalFlip(p=1.0),
+            albumentations.RandomBrightnessContrast(p=1.0),
+        ],
+        bbox_params=albumentations.BboxParams(format="coco", label_fields=["category"]),
+    )
+
     model = AutoModelForObjectDetection.from_pretrained(
         checkpoint,
         id2label=ID_2_LABEL,
         label2id=LABEL_2_ID,
         ignore_mismatched_sizes=True,
     )
+    model.to("cuda")
 
     images_dir = f"caleb/{dataset_name}/train"
     for image_dir in os.listdir(images_dir):
         image_path = os.path.join(images_dir, image_dir)
         image = load_image(image_path)
-        outputs = model(image)
+        outputs = model(image_processor(images=[image], return_tensors="pt"))
         print(outputs)
         input("WAIT!")
 
