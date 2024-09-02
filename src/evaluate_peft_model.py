@@ -37,7 +37,7 @@ def eval_checkpoint(checkpoint="facebook/detr-resnet-50", dataset_name="val"):
         ignore_mismatched_sizes=True,
     )
 
-    images_dir = f"caleb/{dataset_name}"
+    images_dir = f"caleb/{dataset_name}/train"
     for image_dir in os.listdir(images_dir):
         image_path = os.path.join(images_dir, image_dir)
         image = load_image(image_path)
