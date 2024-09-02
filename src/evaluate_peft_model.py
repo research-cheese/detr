@@ -54,7 +54,9 @@ def eval_checkpoint(checkpoint="facebook/detr-resnet-50", dataset_name="val"):
         image = load_image(image_path)
         inputs = image_processor(images=[image], return_tensors="pt")
         outputs = model(**inputs.to("cuda"))
-        print(outputs)
+        target_sizes = torch.tensor([[image.size[1], image.size[0]]])
+        results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
+        print(results)
         input("WAIT!")
 
 
