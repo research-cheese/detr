@@ -99,7 +99,7 @@ lntuning_config = LNTuningConfig(
 
 for dataset_name in ["val", "test"]:
     base_checkpoint_path = f"outputs/hugging-full/train-10000/checkpoint.pth"
-    eval_checkpoint(checkpoint_path=base_checkpoint_path, dataset_name=dataset_name)
+    eval_checkpoint(checkpoint=base_checkpoint_path, dataset_name=dataset_name)
     for config in [
         ("IA3", ia3_config),
         ("LoRA", lora_config),
