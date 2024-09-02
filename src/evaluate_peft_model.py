@@ -22,12 +22,14 @@ from PIL import Image
 from peft import IA3Config, LoraConfig, LNTuningConfig, get_peft_model
 from peft.peft_model import PeftModel
 
+
 def load_image(image_path):
     image = Image.open(image_path)
     image = np.array(image.convert("RGB"))[:, :, ::-1]
     return image
 
-def eval_checkpoint(name, checkpoint="facebook/detr-resnet-50", prefix="hugging-full", dataset_name="val"):
+
+def eval_checkpoint(checkpoint="facebook/detr-resnet-50", dataset_name="val"):
     model = AutoModelForObjectDetection.from_pretrained(
         checkpoint,
         id2label=ID_2_LABEL,
@@ -43,7 +45,12 @@ def eval_checkpoint(name, checkpoint="facebook/detr-resnet-50", prefix="hugging-
         print(outputs)
         input("WAIT!")
 
-def eval_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix="lora", base_checkpoint="facebook/detr-resnet-50", dataset_name="val"):
+
+def eval_peft_model(
+    checkpoint="facebook/detr-resnet-50",
+    base_checkpoint="facebook/detr-resnet-50",
+    dataset_name="val",
+):
 
     model = AutoModelForObjectDetection.from_pretrained(
         base_checkpoint,
@@ -55,7 +62,7 @@ def eval_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix="
         model,
         model_id=checkpoint,
     )
-    
+
     images_dir = f"caleb/{dataset_name}"
     for image_dir in os.listdir(images_dir):
         image_path = os.path.join(images_dir, image_dir)
@@ -90,11 +97,9 @@ lntuning_config = LNTuningConfig(
     modules_to_save=["class_labels_classifier", "bbox_predictor"],
 )
 
-for dataset_name in [
-    "val",
-    "test"
-]:
-    eval_checkpoint("train-10000", dataset_name=dataset_name)
+for dataset_name in ["val", "test"]:
+    base_checkpoint_path = f"outputs/hugging-full/train-10000/checkpoint.pth"
+    eval_checkpoint(checkpoint_path=base_checkpoint_path, dataset_name=dataset_name)
     for config in [
         ("IA3", ia3_config),
         ("LoRA", lora_config),
@@ -117,5 +122,9 @@ for dataset_name in [
             "snow-100/train",
             "snow-1000/train",
         ]:
-            base_checkpoint_path = f"outputs/hugging-full/train-10000/checkpoint.pth"
-            eval_peft_model(config[1], name=model_name, base_checkpoint=base_checkpoint_path, prefix=config[0], dataset_name=dataset_name)
+            checkpoint_path = f"outputs/{config[1]}/{model_name}/checkpoint.pth"
+            eval_peft_model(
+                checkpoint_path=checkpoint_path,
+                base_checkpoint=base_checkpoint_path,
+                dataset_name=dataset_name,
+            )
