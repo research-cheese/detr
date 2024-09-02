@@ -52,7 +52,8 @@ def eval_checkpoint(checkpoint="facebook/detr-resnet-50", dataset_name="val"):
     for image_dir in os.listdir(images_dir):
         image_path = os.path.join(images_dir, image_dir)
         image = load_image(image_path)
-        outputs = model(image_processor(images=[image], return_tensors="pt"))
+        inputs = image_processor(images=[image], return_tensors="pt")
+        outputs = model(**inputs.to("cuda"))
         print(outputs)
         input("WAIT!")
 
