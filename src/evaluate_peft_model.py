@@ -246,7 +246,7 @@ for config in [
         "test"
     ]:
         # evaluate_model(config[1], "train-10000", prefix=config[0])
-        evaluate_model(config[1], "dust-10/train", dataset_name=dataset_name, dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "dust-10/train", dataset_name=dataset_name, prefix=config[0])
         evaluate_model(config[1], "dust-100/train", dataset_name=dataset_name, prefix=config[0])
         evaluate_model(config[1], "dust-1000/train", dataset_name=dataset_name, prefix=config[0])
 
