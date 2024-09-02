@@ -449,7 +449,11 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
     )
 
     trainer.train()
-    if os.path.exists(f"outputs/{prefix}/{name}/checkpoint.pth"): os.remove(f"outputs/{prefix}/{name}/checkpoint.pth")
+    if os.path.exists(f"outputs/{prefix}/{name}/checkpoint.pth"): 
+        try: os.remove(f"outputs/{prefix}/{name}/checkpoint.pth") 
+        except: pass
+        try: shutil.rmtree(f"outputs/{prefix}/{name}/checkpoint.pth")
+        except: pass
     trainer.save_model(f"outputs/{prefix}/{name}/checkpoint.pth")
 
 ia3_config = IA3Config(
