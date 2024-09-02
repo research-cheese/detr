@@ -194,11 +194,12 @@ def load_pretrained(config, name, checkpoint="facebook/detr-resnet-50", prefix="
     model.from_pretrained(f"outputs/{prefix}/{name}/checkpoint.pth")
     return model
 
-def evaluate_model(config, name, checkpoint, prefix, test_images_folder, output_folder_path=""):
+def evaluate_model(config, name, prefix, checkpoint = "facebook/detr-resnet-50", dataset_name="val"):
     # Load
     model = load_pretrained(config, name, checkpoint=checkpoint, prefix=prefix)
 
-    output_folder = f"{output_folder_path}/{name}"
+    test_images_folder = f"aerial/{dataset_name}/train2017"
+    output_folder = f"model_preds/{prefix}/{dataset_name}/{name}"
 
     if os.path.exists(output_folder):
         shutil.rmtree(output_folder)
@@ -240,27 +241,27 @@ for config in [
     ("LoRA", lora_config),
     ("LNTuning", lntuning_config),
 ]:
-    for test_images_folder in [
-        "aerial/val/train2017",
-        "aerial/test/train2017",
+    for dataset_name in [
+        "val",
+        "test"
     ]:
         # evaluate_model(config[1], "train-10000", prefix=config[0])
-        evaluate_model(config[1], "dust-10/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "dust-100/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "dust-1000/train", test_images_folder=test_images_folder, prefix=config[0])
+        evaluate_model(config[1], "dust-10/train", dataset_name=dataset_name, dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "dust-100/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "dust-1000/train", dataset_name=dataset_name, prefix=config[0])
 
-        evaluate_model(config[1], "fog-10/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "fog-100/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "fog-1000/train", test_images_folder=test_images_folder, prefix=config[0])
+        evaluate_model(config[1], "fog-10/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "fog-100/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "fog-1000/train", dataset_name=dataset_name, prefix=config[0])
         
-        evaluate_model(config[1], "maple_leaf-10/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "maple_leaf-100/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "maple_leaf-1000/train", test_images_folder=test_images_folder, prefix=config[0])
+        evaluate_model(config[1], "maple_leaf-10/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "maple_leaf-100/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "maple_leaf-1000/train", dataset_name=dataset_name, prefix=config[0])
         
-        evaluate_model(config[1], "rain-10/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "rain-100/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "rain-1000/train", test_images_folder=test_images_folder, prefix=config[0])
+        evaluate_model(config[1], "rain-10/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "rain-100/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "rain-1000/train", dataset_name=dataset_name, prefix=config[0])
         
-        evaluate_model(config[1], "snow-10/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "snow-100/train", test_images_folder=test_images_folder, prefix=config[0])
-        evaluate_model(config[1], "snow-1000/train", test_images_folder=test_images_folder, prefix=config[0])
+        evaluate_model(config[1], "snow-10/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "snow-100/train", dataset_name=dataset_name, prefix=config[0])
+        evaluate_model(config[1], "snow-1000/train", dataset_name=dataset_name, prefix=config[0])
