@@ -191,7 +191,7 @@ def load_pretrained(config, name, checkpoint="facebook/detr-resnet-50", prefix="
         ignore_mismatched_sizes=True,
     )
     model = get_peft_model(model, config)
-    model.from_pretrained(f"outputs/{prefix}/{name}/checkpoint.pth")
+    model.from_pretrained(model_id=f"outputs/{prefix}/{name}/checkpoint.pth")
     return model
 
 def evaluate_model(config, name, prefix, checkpoint = "facebook/detr-resnet-50", dataset_name="val"):
