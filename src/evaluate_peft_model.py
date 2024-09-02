@@ -206,6 +206,8 @@ def evaluate_model(config, name, checkpoint, prefix, test_images_folder, output_
 
     for image in os.listdir(test_images_folder):
         results = model(image)
+        print(results)
+        input("Bonkus?")
         print(results)            
 
 ia3_config = IA3Config(
