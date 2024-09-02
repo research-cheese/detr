@@ -410,9 +410,8 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
     print(sum(p.numel() for p in model.parameters()))
     print(sum(p.numel() for p in model.parameters() if p.requires_grad))
 
-    if os.path.exists(f"outputs/{prefix}/{name}"): 
-        shutil.rmtree(f"outputs/{prefix}/{name}")
-    os.makedirs(f"outputs/{prefix}/{name}")
+    if os.path.exists(f"outputs/{prefix}/{name}/results"): 
+        shutil.rmtree(f"outputs/{prefix}/{name}/results")
     os.makedirs(f"outputs/{prefix}/{name}/results")
 
     training_args = TrainingArguments(
@@ -450,6 +449,9 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
     )
 
     trainer.train()
+    if os.path.exists(f"outputs/{prefix}/{name}/checkpoint.pth"): 
+        os.remove(f"outputs/{prefix}/{name}/checkpoint.pth")
+    os.makedirs(f"outputs/{prefix}/{name}/checkpoint.pth")
     trainer.save_model(f"outputs/{prefix}/{name}/checkpoint.pth")
 
 ia3_config = IA3Config(

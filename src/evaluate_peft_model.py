@@ -22,11 +22,11 @@ from PIL import Image
 from peft import IA3Config, LoraConfig, LNTuningConfig, get_peft_model
 
 
-def train_checkpoint(name, checkpoint="facebook/detr-resnet-50", prefix="hugging-full"):
+def eval_checkpoint(name, checkpoint="facebook/detr-resnet-50", prefix="hugging-full", dataset_name="val"):
     origin = f"{name}"
     
     data = {
-        "train": f"caleb/{origin}/train/metadata.jsonl",
+        "train": f"caleb/{dataset_name}/test/metadata.jsonl",
         "validation": f"caleb/{origin}/val/metadata.jsonl",
     }
     cs_caronly = load_dataset("json", data_files=data)
@@ -234,7 +234,7 @@ def train_checkpoint(name, checkpoint="facebook/detr-resnet-50", prefix="hugging
     trainer.train()
     trainer.save_model(f"outputs/{prefix}/{name}/checkpoint.pth")
 
-def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix="lora", base_checkpoint="facebook/detr-resnet-50"):
+def eval_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix="lora", base_checkpoint="facebook/detr-resnet-50"):
     origin = f"{name}"
     
     data = {
@@ -413,26 +413,6 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
     if os.path.exists(f"outputs/{prefix}/{name}/results"): 
         shutil.rmtree(f"outputs/{prefix}/{name}/results")
     os.makedirs(f"outputs/{prefix}/{name}/results")
-
-    training_args = TrainingArguments(
-        output_dir=f"outputs/{prefix}/{name}/results",
-        push_to_hub=False,
-        per_device_train_batch_size=8,
-        num_train_epochs=10,
-        fp16=True,
-        save_steps=500,
-        logging_steps=50,
-        learning_rate=1e-5,
-        weight_decay=1e-4,
-        save_total_limit=2,
-        metric_for_best_model="eval_map",
-        greater_is_better=True,
-        label_names=["labels"],
-        remove_unused_columns=False,
-        eval_do_concat_batches=False,
-        load_best_model_at_end=True,
-        eval_strategy="steps",
-    )
 
     accelerator = Accelerator()
 
