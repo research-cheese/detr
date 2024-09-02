@@ -205,7 +205,8 @@ def evaluate_model(config, name, prefix, checkpoint = "facebook/detr-resnet-50",
         shutil.rmtree(output_folder)
     os.makedirs(output_folder)
 
-    for image in os.listdir(test_images_folder):
+    for image_path in os.listdir(test_images_folder):
+        image = Image.open(f"{test_images_folder}/{image_path}")
         results = model(image)
         print(results)
         input("Bonkus?")
