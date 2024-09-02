@@ -184,14 +184,14 @@ def load_pretrained(config, name, checkpoint="facebook/detr-resnet-50", prefix="
         threshold=0.0,
     )
 
-    model = AutoModelForObjectDetection.from_pretrained(
+    auto_model = AutoModelForObjectDetection.from_pretrained(
         checkpoint,
         id2label=ID_2_LABEL,
         label2id=LABEL_2_ID,
         ignore_mismatched_sizes=True,
     )
-    model = get_peft_model(model, config)
-    model.from_pretrained(model_id=f"outputs/{prefix}/{name}/checkpoint.pth")
+    model = get_peft_model(auto_model, config)
+    model.from_pretrained(model=auto_model, model_id=f"outputs/{prefix}/{name}/checkpoint.pth")
     return model
 
 def evaluate_model(config, name, prefix, checkpoint = "facebook/detr-resnet-50", dataset_name="val"):
