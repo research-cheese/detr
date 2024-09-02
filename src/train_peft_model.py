@@ -449,9 +449,7 @@ def train_peft_model(config, name, checkpoint="facebook/detr-resnet-50", prefix=
     )
 
     trainer.train()
-    if os.path.exists(f"outputs/{prefix}/{name}/checkpoint.pth"): 
-        os.remove(f"outputs/{prefix}/{name}/checkpoint.pth")
-    os.makedirs(f"outputs/{prefix}/{name}/checkpoint.pth")
+    if os.path.exists(f"outputs/{prefix}/{name}/checkpoint.pth"): os.remove(f"outputs/{prefix}/{name}/checkpoint.pth")
     trainer.save_model(f"outputs/{prefix}/{name}/checkpoint.pth")
 
 ia3_config = IA3Config(
@@ -479,7 +477,7 @@ lntuning_config = LNTuningConfig(
     modules_to_save=["class_labels_classifier", "bbox_predictor"],
 )
 
-train_checkpoint("train-10000")
+# train_checkpoint("train-10000")
 for config in [
     ("IA3", ia3_config),
     ("LoRA", lora_config),
