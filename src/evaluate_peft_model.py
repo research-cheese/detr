@@ -191,7 +191,7 @@ def load_pretrained(config, name, checkpoint="facebook/detr-resnet-50", prefix="
         ignore_mismatched_sizes=True,
     )
     model = get_peft_model(model, config)
-    model.from_pretrained(f"outputs/{prefix}/{name}/model.pth")
+    model.from_pretrained(f"outputs/{prefix}/{name}/checkpoint.pth")
     return model
 
 def evaluate_model(config, name, checkpoint, prefix, test_images_folder, output_folder_path):
@@ -240,23 +240,23 @@ for config in [
     ("LoRA", lora_config),
     ("LNTuning", lntuning_config),
 ]:
-    evaluate_model(config[1], "train-10000", prefix=config[0])
-    evaluate_model(config[1], "dust-10", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "dust-100", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "dust-1000", "outputs/train-10000/model.pth", prefix=config[0])
+    # evaluate_model(config[1], "train-10000", prefix=config[0])
+    evaluate_model(config[1], "dust-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "dust-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "dust-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
 
-    evaluate_model(config[1], "fog-10", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "fog-100", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "fog-1000", "outputs/train-10000/model.pth", prefix=config[0])
+    evaluate_model(config[1], "fog-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "fog-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "fog-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
     
-    evaluate_model(config[1], "maple_leaf-10", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "maple_leaf-100", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "maple_leaf-1000", "outputs/train-10000/model.pth", prefix=config[0])
+    evaluate_model(config[1], "maple_leaf-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "maple_leaf-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "maple_leaf-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
     
-    evaluate_model(config[1], "rain-10", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "rain-100", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "rain-1000", "outputs/train-10000/model.pth", prefix=config[0])
+    evaluate_model(config[1], "rain-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "rain-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "rain-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
     
-    evaluate_model(config[1], "snow-10", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "snow-100", "outputs/train-10000/model.pth", prefix=config[0])
-    evaluate_model(config[1], "snow-1000", "outputs/train-10000/model.pth", prefix=config[0])
+    evaluate_model(config[1], "snow-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "snow-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "snow-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
