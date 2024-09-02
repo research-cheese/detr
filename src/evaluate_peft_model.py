@@ -24,6 +24,7 @@ from peft.peft_model import PeftModel
 
 def load_image(image_path):
     image = Image.open(image_path)
+    image = image.convert("RGB")
     return image
 
 
