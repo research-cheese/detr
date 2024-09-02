@@ -241,22 +241,22 @@ for config in [
     ("LNTuning", lntuning_config),
 ]:
     # evaluate_model(config[1], "train-10000", prefix=config[0])
-    evaluate_model(config[1], "dust-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "dust-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "dust-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "dust-10/train", prefix=config[0])
+    evaluate_model(config[1], "dust-100/train", prefix=config[0])
+    evaluate_model(config[1], "dust-1000/train", prefix=config[0])
 
-    evaluate_model(config[1], "fog-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "fog-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "fog-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "fog-10/train", prefix=config[0])
+    evaluate_model(config[1], "fog-100/train", prefix=config[0])
+    evaluate_model(config[1], "fog-1000/train", prefix=config[0])
     
-    evaluate_model(config[1], "maple_leaf-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "maple_leaf-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "maple_leaf-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "maple_leaf-10/train", prefix=config[0])
+    evaluate_model(config[1], "maple_leaf-100/train", prefix=config[0])
+    evaluate_model(config[1], "maple_leaf-1000/train", prefix=config[0])
     
-    evaluate_model(config[1], "rain-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "rain-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "rain-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "rain-10/train", prefix=config[0])
+    evaluate_model(config[1], "rain-100/train", prefix=config[0])
+    evaluate_model(config[1], "rain-1000/train", prefix=config[0])
     
-    evaluate_model(config[1], "snow-10/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "snow-100/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
-    evaluate_model(config[1], "snow-1000/train", "outputs/hugging-full/train-10000/checkpoint.pth", prefix=config[0])
+    evaluate_model(config[1], "snow-10/train", prefix=config[0])
+    evaluate_model(config[1], "snow-100/train", prefix=config[0])
+    evaluate_model(config[1], "snow-1000/train", prefix=config[0])
